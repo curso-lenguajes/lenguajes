@@ -37,7 +37,7 @@ public class GeneradorUsuario {
       
       //Vamos a iterarlo para ver los nombres
       for(Usuario u: usuarios){
-System.out.println("NOmbre "+u.getNombre()+" email "+u.getEmail());
+System.out.println("Nombre "+u.getNombre()+" email "+u.getEmail());
       }
     }
 }
