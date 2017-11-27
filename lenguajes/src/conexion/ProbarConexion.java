@@ -6,6 +6,8 @@
 package conexion;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class ProbarConexion {
     public static void main(String[] args) {
         Connection con=null;
@@ -19,7 +21,11 @@ public class ProbarConexion {
         }catch(SQLException e){
             
         }finally{
-            con.close();
+            try {
+                con.close();
+            } catch (SQLException ex) {
+              
+            }
         }
         
     }
