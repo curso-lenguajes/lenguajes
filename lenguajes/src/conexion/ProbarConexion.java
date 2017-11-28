@@ -6,27 +6,31 @@
 package conexion;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public class ProbarConexion {
+   
     public static void main(String[] args) {
-        Connection con=null;
+         Connection con=null;
         try{
-    con=      Conexion.conectarse("root", "");
+         con=  Conexion.conectarse("root", "");
          System.out.println("Te conectaste!!");
          //Aqui vienen queries de mysql
        
         }catch(ClassNotFoundException e){
-       
+            System.out.println("NO se cargo bien el driver");
         }catch(SQLException e){
-            
+            System.out.println("Un error de sql "+e.getMessage());
         }finally{
+        
             try {
-                con.close();
+                if(con!=null)con.close();
+                System.out.println("ya se se cerro todo");
             } catch (SQLException ex) {
+              
+            }
               
             }
         }
         
     }
-}
+
