@@ -6,11 +6,10 @@
 package conexion;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public class ProbarConexion {
     public static void main(String[] args) {
-        Connection con=null;
+         Connection con=null;
         try{
     con=      Conexion.conectarse("campitos", "Conejo197");
          System.out.println("Te conectaste!!");
@@ -26,9 +25,8 @@ public class ProbarConexion {
                 con.close();
                 System.out.println("Se cierra la conexion");
             } catch (SQLException ex) {
-                System.out.println("Hubo este error sin siquiera conectarse ");
             }
         }
         
     }
-}
+            }
