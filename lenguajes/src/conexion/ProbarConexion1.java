@@ -6,8 +6,9 @@
 package conexion;
 
 import java.sql.*;
+import java.util.ArrayList;
 
-public class ProbarConexion {
+public class ProbarConexion1 {
     public static void main(String[] args) {
          Connection con=null;
         try{
@@ -15,26 +16,27 @@ public class ProbarConexion {
          System.out.println("Te conectaste!!");
          //Aqui vienen queries de mysql
             System.out.println("Te conectase muy bien");
-        //Con la conexion que se llama con
-        //vamos a generar una sentencia, la cual es una clase
-     // Statement st= con.createStatement();
-      //Generamos la tablita no le den enter y si voy y le dieron enter
-      //yo su profesor les dare un borradorazo!!!!
-   // st.execute("create table tablita(id integer primary key, "
-    //        + "nombre varchar(40) )");
-    
-    //Caso 1: Insert
-PreparedStatement st=con.prepareStatement("update tablita set nombre=? where id=?");
-    
-    //tambien se cierran las sentencias al igual que las conexiones
-    st.close();
-    
-        
-      
-            
-            
+        //Caso especial del select
+        //Paso 1 generar una consulta(query)
+     Statement st=   con.createStatement();
+  ResultSet rs=   st.executeQuery("select * from tablita where id=1");
+  
+  //Viene la traduccion
+  ArrayList<Tablita> registros=new ArrayList<>();
+  while(rs.next()){
+        Tablita t=new Tablita();
+        t.setId(rs.getInt(1));
+        t.setNombre(rs.getString(2)); 
+        registros.add(t);
+  }
+  
+  for(Tablita t:registros){
+      System.out.println("id "+t.getId()+" nombre "+t.getNombre());
+  }
+            st.close();
+     
         }catch(ClassNotFoundException e){
-            System.out.println("Hubo rpobelmas con driver "+e.getMessage());
+            System.out.println("Hubo problema con driver "+e.getMessage());
         }catch(SQLException e){
             System.out.println("Hubo un error de sql "+e.getMessage());
         }finally{
